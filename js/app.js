@@ -19,14 +19,14 @@ $($overlay).append($btnPrev)
 $($overlay).append($btnNext)
 $($overlay).append($btnExit)
 
-//1. capture the click event on a link to an image 
+//1. capture the click event on a link to an image
 
 $("#imageGallery a").click(function(event) {
 
 	//This prevents the link from going to its defult location.
 	event.preventDefault();
 
-  //This allows the overlay to show when you click on a photo 
+  //This allows the overlay to show when you click on a photo
 	$overlay.fadeIn(1000);
 
 	//This gets the href value from the images that get clicked on. and i added a new varible to it, to distnguish it, in the next step.
@@ -37,10 +37,10 @@ $("#imageGallery a").click(function(event) {
 
 // This gets childes data-title
 	var captionText = $(this).children("img").attr("data-title");
-  // This adds the text from the data-title 
+  // This adds the text from the data-title
 	$caption.text(captionText);
 
-  $currentImg = $(this).children("img");
+  $(this).closest('li').addClass('active');
 
 });
 
@@ -51,17 +51,26 @@ $("#imageGallery a").click(function(event) {
 
 ///////////////////////////////// THIS IS THE PART I CANT FIGURE OUT ///////////////////////////////////////////////////
 ///////////////////////////////// NEED HELP WITH GETTING MY PREV AND NEXT BUTTONS TO WORK//////////////////////////////
-var items = $("li").children();
-var itemAmount = items.length;
-console.log(itemAmount);
+var images = $("li img");
+console.log(images);
 
-$btnNext.click(function(){
+$btnNext.click(function(e){
+	e.stopPropagation();
+	var next = $('li.active').next('li');
+	$('li.active').toggleClass('active');
+	next.toggleClass('active');
 
+	$image.attr('src', next.find('a').attr('href'));
 });
 
 
-$btnNext.click(function(){
+$btnPrev.click(function(e){
+	e.stopPropagation();
+	var prev = $('li.active').prev('li');
+	$('li.active').toggleClass('active');
+	prev.toggleClass('active');
 
+	$image.attr('src', prev.find('a').attr('href'));
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,27 +102,26 @@ $overlay.click(function(){
 //this just creats an varible for the input element
 var $search = $('input');
 
-// This gets the value of what the users type into the input box and the .tolowerCaase converts evrything to a lowercase.// 
+// This gets the value of what the users type into the input box and the .tolowerCaase converts evrything to a lowercase.//
 $search.keyup(function(){
   var userInput = $(this).val().toLowerCase();
 
     //This adds the same function to each <img> elemnt
   $('#imageGallery img').each(function(){
     var altText = $(this).attr('alt').toLowerCase();
- 
+
 
     if(altText.search(userInput) > -1){
-      $(this).parent().parent().fadeIn(500);  
-    } else {                                     
-      $(this).parent().parent().fadeOut(500); 
+      $(this).parent().parent().fadeIn(500);
+    } else {
+      $(this).parent().parent().fadeOut(500);
     }
   });
 });
 
   ///////////NOTS FOR SERCH BOX CODE////////////
-  /* .parent() allows you to taget the parent of an elemant, 
+  /* .parent() allows you to taget the parent of an elemant,
   In this case the parent of the image witch is the <a> but,
-   since the img and <a> are both childes of the list item, 
-   the fadeIn and fadeOut methds dont work very well. By adding .parent() . parent() twice, 
-   it allows it to go back twice and target the <li> witch makes things fade out properly */ 
-
+   since the img and <a> are both childes of the list item,
+   the fadeIn and fadeOut methds dont work very well. By adding .parent() . parent() twice,
+   it allows it to go back twice and target the <li> witch makes things fade out properly */
