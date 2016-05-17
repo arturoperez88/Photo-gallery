@@ -13,11 +13,19 @@
 	height: 100%;
 	width: 100%;
 	position: fixed;
-	z-index: 2;
+	z-index: 1;
 	top: 0;	
 	left: 0;
 	background: rgba(0, 0, 0, 0.7);
 	display: none;
+	
+}
+
+#overlayTwo {
+height: 100%;
+width: 90%;
+left: 5%;
+position: absolute;
 }
 
 #btnPrev{
@@ -31,6 +39,7 @@
 	 top:50%;
 	 left:6%;
 	 z-index: 10;
+	 display: inline-block;
 }
 #btnNext {
 	 background: none;
@@ -43,6 +52,7 @@
 	 top:50%;
 	 right: 6%;
 	 z-index: 10;
+	 display: inline-block;
 }
 
 #btnExit {
@@ -79,7 +89,6 @@ right: 15%;
 
 
 body {
-	background-color: rgba(0, 0, 0, );
 	text-align: center;
 }
 .container {
@@ -235,13 +244,29 @@ color: black;
 
 a p {
 	display: none;
-}
 
 }
 
+}
+
+@media screen and (min-width: 1400px) {
+
+	
+	#overlayTwo {
+		width: 80%;
+		left:10%;
+	}
+}
 
 
 
+@media screen and (min-width: 1600px) {
+
+	#overlayTwo {
+		width: 70%;
+		left:15%;
+	}
+}
 
 
 

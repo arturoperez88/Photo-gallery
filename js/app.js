@@ -1,6 +1,7 @@
 //created all varibles needed with dtached elments using JQuery
 //varibles needed for the overlay, images and caption
 var $overlay = $('<div id="overlay"></div>');
+var $overlayTwo =$('<div id="overlayTwo"></div>');
 var $image = $('<img id="lbImage">');
 var $caption = $('<p></p>');
 
@@ -13,11 +14,12 @@ var $btnExit = $('<button id="btnExit"> X </button>');
 
 // appended overlay to the body, and and detached elaments to overaly
 $("body").append($overlay);
-$($overlay).append($image);
-$($overlay).append($caption);
-$($overlay).append($btnPrev);
-$($overlay).append($btnNext);
-$($overlay).append($btnExit);
+$($overlay).append($overlayTwo);
+$($overlayTwo).append($image);
+$($overlayTwo).append($caption);
+$($overlayTwo).append($btnPrev);
+$($overlayTwo).append($btnNext);
+$($overlayTwo).append($btnExit);
 
 //1. capture the click event on a link to an image 
 
@@ -28,6 +30,7 @@ $("#imageGallery a").click(function(event) {
 
   //This allows the overlay to show when you click on a photo 
 	$overlay.fadeIn(1000);
+
 
 	//This gets the href value from the images that get clicked on. and i added a new varible to it, to distnguish it, in the next step.
 	var $imageLocation = $(this).attr("href");
@@ -107,7 +110,7 @@ $search.keyup(function(){
 
     //This adds the same function to each <img> elemnt
   $('#imageGallery img').each(function(){
-    var altText = $(this).attr('alt').toLowerCase();
+    var altText = $(this).attr('data-title').toLowerCase();
  
 
     if(altText.search(userInput) > -1){
