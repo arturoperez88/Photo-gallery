@@ -30,7 +30,7 @@
 	 position: absolute;
 	 top:50%;
 	 left:6%;
-	 z-index: 1;
+	 z-index: 10;
 }
 #btnNext {
 	 background: none;
@@ -42,7 +42,7 @@
 	 position: absolute;
 	 top:50%;
 	 right: 6%;
-	 z-index: 1;
+	 z-index: 10;
 }
 
 #btnExit {

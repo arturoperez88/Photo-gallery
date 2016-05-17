@@ -36,44 +36,52 @@ $("#imageGallery a").click(function(event) {
 	$image.attr("src", $imageLocation);
 
 // This gets childes data-title
-	var captionText = $(this).children("img").attr("data-title");
+	var imgCaption = $(this).children("img").attr("data-title");
   // This adds the text from the data-title 
-	$caption.text(captionText);
+	$caption.text(imgCaption);
 
   $currentImg = $(this).children("img");
 
 });
 
+//////////////////////////////// BUTTON NEX AND PREV FUNCTION//////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//Display next image
+var next = function(e) {
+  $imgLocation = $currentImg.parents("li").next().children("a").attr("href");
+  $image.attr("src", $imgLocation);
+  imgCaption = $currentImg.parents("li").next().children("a").children("img").attr("data-title");
+  $caption.text(imgCaption);
+  $overlay.show();
+  $currentImg = $currentImg.parents("li").next().children("a").children("img");
+};
 
+//Display previous image
+var prev = function() {
+  $imgLocation = $currentImg.parents("li").prev().children("a").attr("href");
+  $image.attr("src", $imgLocation);
+  imgCaption = $currentImg.parents("li").prev().children("a").children("img").attr("data-title");
+  $caption.text(imgCaption);
+  $overlay.show();
+  $currentImg = $currentImg.parents("li").prev().children("a").children("img");
+};
 
-
-
-
-///////////////////////////////// THIS IS THE PART I CANT FIGURE OUT ///////////////////////////////////////////////////
-///////////////////////////////// NEED HELP WITH GETTING MY PREV AND NEXT BUTTONS TO WORK//////////////////////////////
-var items = $("li").children();
-var itemAmount = items.length;
-console.log(itemAmount);
-
-$btnNext.click(function(){
-
+//Display next image by clicking "next" button
+$('#btnNext').click(function() {
+  if ($currentImg.parents("li").next().children("a").children("img").length !== 0) {
+      next();
+  } 
 });
 
-
-$btnNext.click(function(){
-
+//Display previous image by clicking "previous" button
+$('#btnPrev').click(function() {
+  if ($currentImg.parents("li").prev().children("a").children("img").length !== 0) {
+    prev();
+  } 
 });
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
 
 //When X is clicked
 $("#btnExit").click(function() {
@@ -83,7 +91,7 @@ $("#btnExit").click(function() {
 
 
 //Hide overaly when clicked on
-$overlay.click(function(){
+$image.click(function(){
 	$overlay.fadeOut(1000);
 });
 
