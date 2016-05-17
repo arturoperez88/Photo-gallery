@@ -9,15 +9,15 @@ var $caption = $('<p></p>');
 var $btnPrev = $('<button id="btnPrev"> < </button>');
 var $btnNext = $('<button id="btnNext"> > </button>');
 var $btnExit = $('<button id="btnExit"> X </button>');
-var index = 0;
+
 
 // appended overlay to the body, and and detached elaments to overaly
-$("body").append($overlay)
-$($overlay).append($image)
-$($overlay).append($caption)
-$($overlay).append($btnPrev)
-$($overlay).append($btnNext)
-$($overlay).append($btnExit)
+$("body").append($overlay);
+$($overlay).append($image);
+$($overlay).append($caption);
+$($overlay).append($btnPrev);
+$($overlay).append($btnNext);
+$($overlay).append($btnExit);
 
 //1. capture the click event on a link to an image 
 
@@ -124,4 +124,7 @@ $search.keyup(function(){
    since the img and <a> are both childes of the list item, 
    the fadeIn and fadeOut methds dont work very well. By adding .parent() . parent() twice, 
    it allows it to go back twice and target the <li> witch makes things fade out properly */ 
+
+
+
 
