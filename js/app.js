@@ -102,7 +102,7 @@ $image.click(function(){
 ////////////////////SEARCH BOX/////////////////////
 
 //this just creats an varible for the input element
-var $search = $('input');
+var $search = $('#searchBox');
 
 // This gets the value of what the users type into the input box and the .tolowerCaase converts evrything to a lowercase.// 
 $search.keyup(function(){
